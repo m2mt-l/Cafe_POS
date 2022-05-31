@@ -5,11 +5,11 @@ import { CompletedOrdersComponent } from './completed-orders/completed-orders.co
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 const routes: Routes = [
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-    { path: 'add-or-update-order', component: AddOrUpdateOrderComponent},
-    { path: 'dashboard', component: NavDashboardComponent},
-    { path: 'completed-orders', component: CompletedOrdersComponent},
-    { path: 'current-orders', component: CurrentOrdersComponent}
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'add-or-update-order', component: AddOrUpdateOrderComponent },
+    { path: 'dashboard', component: NavDashboardComponent },
+    { path: 'completed-orders', component: CompletedOrdersComponent },
+    { path: 'current-orders', component: CurrentOrdersComponent },
 ];
 
 @NgModule({

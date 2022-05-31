@@ -18,14 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
         AddOrUpdateOrderComponent,
         CurrentOrdersComponent,
         CompletedOrdersComponent,
-        
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-    ],
+    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule],
     providers: [],
     bootstrap: [AppComponent],
 })
