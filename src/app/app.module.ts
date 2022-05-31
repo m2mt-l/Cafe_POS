@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-order.component';
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
-import { ComplitedOrdersComponent } from './complited-orders/complited-orders.component';
+import { CompletedOrdersComponent } from './completed-orders/completed-orders.component';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -15,9 +17,9 @@ import { ComplitedOrdersComponent } from './complited-orders/complited-orders.co
         NavDashboardComponent,
         AddOrUpdateOrderComponent,
         CurrentOrdersComponent,
-        ComplitedOrdersComponent,
+        CompletedOrdersComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule],
     providers: [],
     bootstrap: [AppComponent],
 })
