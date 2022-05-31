@@ -10,7 +10,13 @@ import { CurrentOrdersComponent } from './current-orders/current-orders.componen
 import { ComplitedOrdersComponent } from './complited-orders/complited-orders.component';
 
 @NgModule({
-    declarations: [AppComponent, NavDashboardComponent, AddOrUpdateOrderComponent, CurrentOrdersComponent, ComplitedOrdersComponent],
+    declarations: [
+        AppComponent,
+        NavDashboardComponent,
+        AddOrUpdateOrderComponent,
+        CurrentOrdersComponent,
+        ComplitedOrdersComponent,
+    ],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
