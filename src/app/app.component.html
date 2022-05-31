@@ -1,7 +1,8 @@
 <h1 class="title">{{title}}</h1>
 <nav>
-    <button mat-stroked-button color="primary">Completed Orders</button>
-    <button mat-stroked-button color="primary">Current Orders</button>
-    <button mat-stroked-button color="primary">Add an Orders</button>
+    <button mat-stroked-button color="primary" routerLink="/completed-orders">Completed Orders</button>
+    <button mat-stroked-button color="primary" routerLink="/current-orders">Current Orders</button>
+    <button mat-stroked-button color="primary" routerLink="/add-or-update-order">Add an Order</button>
 </nav>
+<router-outlet></router-outlet>
 <app-nav-dashboard></app-nav-dashboard>
