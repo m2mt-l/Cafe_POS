@@ -9,6 +9,8 @@ import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-o
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
 import { ComplitedOrdersComponent } from './complited-orders/complited-orders.component';
 
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -17,7 +19,12 @@ import { ComplitedOrdersComponent } from './complited-orders/complited-orders.co
         CurrentOrdersComponent,
         ComplitedOrdersComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
