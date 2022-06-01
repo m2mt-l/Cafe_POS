@@ -7,7 +7,15 @@
 </div>
 <div class="menu-box">
     <div *ngFor="let menuItem of menuItems" class="menu-container">
-        <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
-        <img class="picture" src="{{menuItem.imageUrl}}">
+        <div class="menu">
+            <img class="picture" src="{{menuItem.imageUrl}}">
+            <div class="item">
+                <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Number of orders</mat-label>
+                    <input matInput type="number" min=1 #input required>
+                </mat-form-field>
+            </div>
+        </div>
     </div>
 </div>

@@ -15,6 +15,17 @@
     flex-wrap: wrap;
 }
 
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
 .menu-container {
     display: flex;
     flex-direction: column;
@@ -28,4 +39,5 @@
 .picture {
     width: 250px;
     height: auto;
+    margin-right: 2rem;
 }
