@@ -10,4 +10,4 @@ export const MENUITEMS: MenuItem[] = [
     { name: 'Cheese Cake', imageUrl: '../assets/cheese-cake.jpg', price: 6.0 },
     { name: 'Chiffon Cake', imageUrl: '../assets/chiffon-cake.jpg', price: 5.5 },
     { name: 'Chocolate Cake', imageUrl: '../assets/chocolate-cake.jpg', price: 6.0 },
-] 
+];
