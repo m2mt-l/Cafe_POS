@@ -10,6 +10,8 @@ import { CurrentOrdersComponent } from './current-orders/current-orders.componen
 import { CompletedOrdersComponent } from './completed-orders/completed-orders.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,14 @@ import { MatButtonModule } from '@angular/material/button';
         CurrentOrdersComponent,
         CompletedOrdersComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
