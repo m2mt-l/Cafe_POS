@@ -1,1 +1,13 @@
-<p>add-or-update-order works!</p>
+<div class="inputName">
+    <h2 class="customerName">Customer Name: </h2>
+    <mat-form-field class="nameForm" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div>
+<div class="menu-box">
+    <div *ngFor="let menuItem of menuItems" class="menu-container">
+        <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
+        <img class="picture" src="{{menuItem.imageUrl}}">
+    </div>
+</div>
