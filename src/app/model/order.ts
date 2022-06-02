@@ -10,6 +10,7 @@ export class Order {
     isCompleted: boolean = false;
 
     constructor(customerName: string, private menuItemService: MenuItemService){
+        this.customerName = customerName;
         this.updateTime();
     }
 
