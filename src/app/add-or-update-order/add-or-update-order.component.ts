@@ -7,6 +7,8 @@ import { MenuItem } from '../model/menuItem';
     styleUrls: ['./add-or-update-order.component.css'],
 })
 export class AddOrUpdateOrderComponent implements OnInit {
+    customerName: string = '';
+    
     constructor(private menuItemsService: MenuItemService) {}
 
     menuItems: MenuItem[] = this.menuItemsService.getAll();

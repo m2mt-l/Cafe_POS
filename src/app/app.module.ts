@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-order.component';
@@ -24,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     imports: [
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
         BrowserAnimationsModule,
         MatButtonModule,
         MatFormFieldModule,
