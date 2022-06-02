@@ -6,14 +6,14 @@
     </mat-form-field>
 </div>
 <div class="menu-box">
-    <div *ngFor="let menuItem of menuItems" class="menu-container">
+    <div *ngFor="let menuItem of menuItems; let i = index" [attr.data-index]="i" class="menu-container">
         <div class="menu">
             <img class="picture" src="{{menuItem.imageUrl}}">
             <div class="item">
                 <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Number of orders</mat-label>
-                    <input matInput type="number" min=1 #input required>
+                    <input matInput type="number" min=1 #input (keyup)="sumOrderTotal(i, input.value, menuItem)" required>
                 </mat-form-field>
             </div>
         </div>
@@ -21,6 +21,6 @@
 </div>
 
 <div class="total-box">
-    <h2 class="orderTotal">Order Total: </h2>
+    <h2 class="orderTotal">Order Total: ${{getTotal()}}</h2>
     <button mat-raised-button color="primary">Submit/Update Order</button>
 </div>
