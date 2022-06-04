@@ -13,7 +13,7 @@
                 <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Number of orders</mat-label>
-                    <input matInput type="number" min=1 #input (keyup)="sumOrderTotal(i, input.value, menuItem)" required>
+                    <input matInput type="number" min=1 #input (keyup)="onKeyInputOrder(i, input.value, menuItem)" required>
                 </mat-form-field>
             </div>
         </div>

@@ -19,8 +19,17 @@ export class AddOrUpdateOrderComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    sumOrderTotal(index: number, inputNumber: string, menuItem: MenuItem): void {
-        this.total[index] = Number(inputNumber) * menuItem.price;
+    onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
+        this.sumOrderTotal(index, Number(inputNumber), menuItem);
+        this.setOrderMenuItem(index, Number(inputNumber));
+    }
+
+    sumOrderTotal(index: number, inputNumber: number, menuItem: MenuItem): void {
+        this.total[index] = inputNumber * menuItem.price;
+    }
+
+    setOrderMenuItem(index: number, inputNumber: number): void {
+        this.newOrder.menuItems[index] = inputNumber;
     }
 
     getTotal(): number {
