@@ -49,21 +49,22 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     isAbleToSubmitOrder(): boolean {
-        return this.newOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder();
+        return (
+            this.newOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
+        );
     }
 
     isValidNumberOfOrder(): boolean {
-        for (let menuItem of this.newOrder.menuItems){
-            if(menuItem < 0) return false;
+        for (let menuItem of this.newOrder.menuItems) {
+            if (menuItem < 0) return false;
         }
         return true;
     }
 
     getOrderNumberErrorMessage(): string {
-        if(this.orderNumber.hasError('required')) {
-            return 'The number of order is required.'
-        }
-        else {
+        if (this.orderNumber.hasError('required')) {
+            return 'The number of order is required.';
+        } else {
             return this.orderNumber.hasError('min') ? 'The minimum number is 1.' : '';
         }
     }
