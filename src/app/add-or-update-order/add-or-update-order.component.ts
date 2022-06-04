@@ -13,12 +13,11 @@ export class AddOrUpdateOrderComponent implements OnInit {
     total: number[] = [];
     // newOrder: Order = new Order(this.customerName, this.menuItemsService);
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
-    
+
     constructor(private menuItemsService: MenuItemService, private orderService: OrderService) {}
 
     menuItems: MenuItem[] = this.menuItemsService.getAll();
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
         this.sumOrderTotal(index, Number(inputNumber), menuItem);
@@ -35,7 +34,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     getTotal(): number {
-        if(this.total.length === 0) return 0;
+        if (this.total.length === 0) return 0;
         else return this.total.reduce((total, x) => total + x);
     }
 

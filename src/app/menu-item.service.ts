@@ -7,9 +7,9 @@ import { MENUITEMS } from './data/validMenuItems';
 export class MenuItemService {
     constructor() {}
 
-    get(index: number): MenuItem | null{
+    get(index: number): MenuItem | null {
         const menuItems = this.getAll();
-        if(index <= menuItems.length - 1) return menuItems[index];
+        if (index <= menuItems.length - 1) return menuItems[index];
         else return null;
     }
 

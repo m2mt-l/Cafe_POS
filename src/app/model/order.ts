@@ -11,7 +11,7 @@ export class Order {
     seconds: number = 0;
     isCompleted: boolean = false;
 
-    constructor(customerName: string, private menuItemService: MenuItemService){
+    constructor(customerName: string, private menuItemService: MenuItemService) {
         this.customerName = customerName;
         this.updateTime();
     }
@@ -19,7 +19,7 @@ export class Order {
     setDefaultMenuItems(): number[] {
         let result: number[] = [];
         const menuItemsLength: number = this.menuItemService.getAll().length;
-        for (let i: number = 0; i < menuItemsLength; i++){
+        for (let i: number = 0; i < menuItemsLength; i++) {
             result.push(0);
         }
         return result;
@@ -30,7 +30,7 @@ export class Order {
     }
 
     addItem(index: number): void {
-        if(index < this.menuItems.length) this.menuItems[index]++;
+        if (index < this.menuItems.length) this.menuItems[index]++;
         else return;
     }
 
@@ -38,8 +38,8 @@ export class Order {
         this.totalOrder = total;
     }
 
-    removeItem(index : number): void {
-        if(index < this.menuItems.length) this.menuItems[index]--;
+    removeItem(index: number): void {
+        if (index < this.menuItems.length) this.menuItems[index]--;
     }
 
     updateTime(): void {
@@ -48,5 +48,4 @@ export class Order {
         this.minutes = date.getMinutes();
         this.seconds = date.getSeconds();
     }
-    
 }

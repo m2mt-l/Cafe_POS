@@ -21,7 +21,7 @@ export class OrderService {
     }
 
     getAllCompleted(): Order[] {
-        const completedOrders: Order[] = this.orders.filter(x => x.isCompleted);
+        const completedOrders: Order[] = this.orders.filter((x) => x.isCompleted);
         return completedOrders;
     }
 
@@ -29,10 +29,9 @@ export class OrderService {
         const newOrder: Order = new Order(customerName, menuItemService);
         return newOrder;
     }
-    
+
     submitOrder(newOrder: Order): void {
         newOrder.updateTime();
         this.orders.push(newOrder);
     }
-
 }
