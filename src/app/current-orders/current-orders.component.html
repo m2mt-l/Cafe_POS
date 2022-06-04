@@ -1,1 +1,5 @@
-<p>current-orders works!</p>
+<div class="currentOrderList">
+    <div *ngFor="let order of orderService.orders">
+        <h3>{{order.hours}}:{{order.minutes}}:{{order.seconds}}  {{order.customerName}}</h3>
+    </div>
+</div>

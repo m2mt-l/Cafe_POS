@@ -25,9 +25,14 @@ export class OrderService {
         return completedOrders;
     }
 
-    created(customerName: string, menuItemService: MenuItemService) {
+    created(customerName: string, menuItemService: MenuItemService): Order {
         const newOrder: Order = new Order(customerName, menuItemService);
-        this.orders.push(newOrder);
         return newOrder;
     }
+    
+    submitOrder(newOrder: Order): void {
+        newOrder.updateTime();
+        this.orders.push(newOrder);
+    }
+
 }

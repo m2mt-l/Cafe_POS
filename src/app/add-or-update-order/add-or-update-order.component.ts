@@ -42,4 +42,8 @@ export class AddOrUpdateOrderComponent implements OnInit {
     onKeyInputName(value: string): void {
         this.newOrder.customerName = value;
     }
+
+    clickUpdateOrder(): void {
+        this.orderService.submitOrder(this.newOrder);
+    }
 }
