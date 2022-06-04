@@ -11,7 +11,8 @@ import { OrderService } from '../order.service';
 export class AddOrUpdateOrderComponent implements OnInit {
     customerName: string = '';
     total: number[] = [];
-    newOrder: Order = new Order(this.customerName, this.menuItemsService);
+    // newOrder: Order = new Order(this.customerName, this.menuItemsService);
+    newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     
     constructor(private menuItemsService: MenuItemService, private orderService: OrderService) {}
 
@@ -22,6 +23,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
         this.sumOrderTotal(index, Number(inputNumber), menuItem);
         this.setOrderMenuItem(index, Number(inputNumber));
+        // console.log(this.orderService.orders);
     }
 
     sumOrderTotal(index: number, inputNumber: number, menuItem: MenuItem): void {
