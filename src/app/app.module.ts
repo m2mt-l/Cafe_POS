@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-order.component';
@@ -13,6 +13,7 @@ import { CompletedOrdersComponent } from './completed-orders/completed-orders.co
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSortModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

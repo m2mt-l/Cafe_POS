@@ -2,7 +2,7 @@
     <h2 class="customerName">Customer Name: </h2>
     <mat-form-field class="nameForm" appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput type="text" [(ngModel)]="customerName">
+        <input matInput type="text" [(ngModel)]="customerName" #inputName (keyup)="onKeyInputName(inputName.value)">
     </mat-form-field>
 </div>
 <div class="menu-box">
@@ -13,7 +13,7 @@
                 <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Number of orders</mat-label>
-                    <input matInput type="number" min=1 #input (keyup)="sumOrderTotal(i, input.value, menuItem)" required>
+                    <input matInput type="number" min=1 #input (keyup)="onKeyInputOrder(i, input.value, menuItem)" required>
                 </mat-form-field>
             </div>
         </div>
@@ -22,5 +22,5 @@
 
 <div class="total-box">
     <h2 class="orderTotal">Order Total: ${{getTotal()}}</h2>
-    <button mat-raised-button color="primary">Submit/Update Order</button>
+    <button mat-raised-button color="primary" (click)="clickUpdateOrder()">Submit/Update Order</button>
 </div>

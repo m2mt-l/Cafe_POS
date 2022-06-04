@@ -21,13 +21,17 @@ export class OrderService {
     }
 
     getAllCompleted(): Order[] {
-        const completedOrders: Order[] = this.orders.filter(x => x.isCompleted);
+        const completedOrders: Order[] = this.orders.filter((x) => x.isCompleted);
         return completedOrders;
     }
 
-    created(customerName: string, menuItemService: MenuItemService) {
+    created(customerName: string, menuItemService: MenuItemService): Order {
         const newOrder: Order = new Order(customerName, menuItemService);
-        this.orders.push(newOrder);
         return newOrder;
+    }
+
+    submitOrder(newOrder: Order): void {
+        newOrder.updateTime();
+        this.orders.push(newOrder);
     }
 }
