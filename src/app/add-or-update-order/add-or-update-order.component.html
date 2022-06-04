@@ -2,7 +2,8 @@
     <h2 class="customerName">Customer Name: </h2>
     <mat-form-field class="nameForm" appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput type="text" [(ngModel)]="customerName" #inputName (keyup)="onKeyInputName(inputName.value)">
+        <input matInput type="text" [(ngModel)]="customerName" #inputName="ngModel" (keyup)="onKeyInputName(inputName.value)" required>
+        <mat-error *ngIf="inputName.invalid">Name is required</mat-error>
     </mat-form-field>
 </div>
 <div class="menu-box">
@@ -13,7 +14,7 @@
                 <h3>{{menuItem.name}} ${{menuItem.price}}</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Number of orders</mat-label>
-                    <input matInput type="number" min=1 #input (keyup)="onKeyInputOrder(i, input.value, menuItem)" required>
+                    <input matInput type="number" min=1 #input [formControl]="orderNumber" (keyup)="onKeyInputOrder(i, input.value, menuItem)" required>
                 </mat-form-field>
             </div>
         </div>
@@ -22,5 +23,11 @@
 
 <div class="total-box">
     <h2 class="orderTotal">Order Total: ${{getTotal()}}</h2>
-    <button mat-raised-button color="primary" (click)="clickUpdateOrder()">Submit/Update Order</button>
+    <div *ngIf="isAbleToSubmitOrder(); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <button mat-raised-button color="primary" (click)="clickUpdateOrder()">Submit/Update Order</button>
+        </ng-template>
+        <ng-template #elseBlock>
+            <button mat-raised-button color="primary" disabled>Submit/Update Order</button>
+        </ng-template>
 </div>
