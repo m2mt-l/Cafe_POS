@@ -13,6 +13,7 @@ import { CompletedOrdersComponent } from './completed-orders/completed-orders.co
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSortModule
     ],
     providers: [],
     bootstrap: [AppComponent],

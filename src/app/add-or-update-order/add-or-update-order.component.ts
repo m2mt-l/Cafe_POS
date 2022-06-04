@@ -44,6 +44,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     clickUpdateOrder(): void {
+        this.newOrder.addTotal(this.getTotal());
         this.orderService.submitOrder(this.newOrder);
     }
 }

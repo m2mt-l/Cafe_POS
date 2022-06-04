@@ -1,5 +1,19 @@
 <div class="currentOrderList">
-    <div *ngFor="let order of orderService.orders">
-        <h3>{{order.hours}}:{{order.minutes}}:{{order.seconds}}  {{order.customerName}}</h3>
-    </div>
+    <table matSort>
+        <tr class="orderListHeader">
+          <th mat-sort-header="date">Date</th>
+          <th mat-sort-header="time">Time</th>
+          <th mat-sort-header="customer">Customer</th>
+          <th mat-sort-header="total">Total</th>
+          <th mat-sort-header="complete">Complete</th>
+        </tr>
+      
+        <tr class="orderList" *ngFor="let order of orderService.orders">
+          <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
+          <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
+          <td>{{order.customerName}}</td>
+          <td>${{order.totalOrder}}</td>
+          <td><button mat-raised-button color="primary">Completed</button></td>
+        </tr>
+    </table>
 </div>

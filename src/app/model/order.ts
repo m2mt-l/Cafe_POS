@@ -1,8 +1,10 @@
 import { MenuItemService } from '../menu-item.service';
+import { MenuItem } from './menuItem';
 
 export class Order {
     customerName: string = '';
     menuItems: number[] = this.setDefaultMenuItems();
+    totalOrder: number = 0;
 
     hours: number = 0;
     minutes: number = 0;
@@ -30,6 +32,10 @@ export class Order {
     addItem(index: number): void {
         if(index < this.menuItems.length) this.menuItems[index]++;
         else return;
+    }
+
+    addTotal(total: number): void {
+        this.totalOrder = total;
     }
 
     removeItem(index : number): void {
