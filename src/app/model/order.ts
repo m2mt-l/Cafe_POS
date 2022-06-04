@@ -6,6 +6,9 @@ export class Order {
     menuItems: number[] = this.setDefaultMenuItems();
     totalOrder: number = 0;
 
+    year: number = 0;
+    month: number = 0;
+    date: number = 0;
     hours: number = 0;
     minutes: number = 0;
     seconds: number = 0;
@@ -44,6 +47,9 @@ export class Order {
 
     updateTime(): void {
         const date: Date = new Date();
+        this.year = date.getFullYear();
+        this.month = date.getMonth();
+        this.date = date.getDate();
         this.hours = date.getHours();
         this.minutes = date.getMinutes();
         this.seconds = date.getSeconds();

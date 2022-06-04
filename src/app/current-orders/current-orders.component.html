@@ -9,7 +9,7 @@
         </tr>
       
         <tr class="orderList" *ngFor="let order of orderService.orders">
-          <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
+          <td>{{order.year}}/{{order.month}}/{{order.date}}</td>
           <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
