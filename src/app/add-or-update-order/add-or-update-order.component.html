@@ -2,7 +2,7 @@
     <h2 class="customerName">Customer Name: </h2>
     <mat-form-field class="nameForm" appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput type="text" [(ngModel)]="customerName">
+        <input matInput type="text" [(ngModel)]="customerName" #inputName (keyup)="onKeyInputName(inputName.value)">
     </mat-form-field>
 </div>
 <div class="menu-box">

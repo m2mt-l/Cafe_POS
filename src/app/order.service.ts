@@ -28,6 +28,7 @@ export class OrderService {
     created(customerName: string, menuItemService: MenuItemService) {
         const newOrder: Order = new Order(customerName, menuItemService);
         this.orders.push(newOrder);
+        console.log(this.orders);
         return newOrder;
     }
 }
