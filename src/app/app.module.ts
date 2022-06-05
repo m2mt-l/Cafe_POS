@@ -36,7 +36,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatInputModule,
         MatSortModule,
         MatTabsModule,
-        MatExpansionModule
+        MatExpansionModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
