@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatFormFieldModule,
         MatInputModule,
         MatSortModule,
-        MatTabsModule
+        MatTabsModule,
+        MatExpansionModule
     ],
     providers: [],
     bootstrap: [AppComponent],
