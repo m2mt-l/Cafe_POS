@@ -13,7 +13,7 @@ export class CurrentOrdersComponent implements OnInit {
     ngOnInit(): void {}
 
     setComplete(order: Order): void{
+        order.updateTime();
         order.setCompleted();
-        console.log(order);
     }
 }

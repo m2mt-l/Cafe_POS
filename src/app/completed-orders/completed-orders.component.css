@@ -1,0 +1,15 @@
+.completedOrderList {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.orderListHeader {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 20px;
+}
+
+.orderList {
+    font-size: medium;
+}
