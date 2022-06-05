@@ -68,4 +68,8 @@ export class AddOrUpdateOrderComponent implements OnInit {
             return this.orderNumber.hasError('min') ? 'The minimum number is 1.' : '';
         }
     }
+
+    setOrder(index: number): void {
+        this.newOrder = this.orderService.get(index);
+    }
 }
