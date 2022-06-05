@@ -9,12 +9,12 @@
           <th mat-sort-header="complete">Complete</th>
         </tr>
       
-        <tr class="orderList" *ngFor="let order of orderService.getAllCurrent()">
+        <tr class="orderList" *ngFor="let order of orderService.getAllCurrent(); let i = index" [attr.data-index]="i">
           <td>{{order.year}}/{{order.month}}/{{order.date}}</td>
           <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
-          <td><button mat-stroked-button color="primary">Modify</button></td>
+          <td><button mat-stroked-button color="primary" routerLink="/add-or-update-order/{{i}}">Modify</button></td>
           <td><button mat-raised-button color="primary" (click)="setComplete(order)">Completed</button></td>
         </tr>
     </table>
