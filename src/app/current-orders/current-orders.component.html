@@ -15,7 +15,7 @@
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
           <td><button mat-stroked-button color="primary">Modify</button></td>
-          <td><button mat-raised-button color="primary">Completed</button></td>
+          <td><button mat-raised-button color="primary" (click)="setComplete(order)">Completed</button></td>
         </tr>
     </table>
 </div>
