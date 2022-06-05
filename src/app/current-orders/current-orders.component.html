@@ -5,6 +5,7 @@
           <th mat-sort-header="time">Time</th>
           <th mat-sort-header="customer">Customer</th>
           <th mat-sort-header="total">Total</th>
+          <th mat-sort-header="modify">Modify</th>
           <th mat-sort-header="complete">Complete</th>
         </tr>
       
@@ -13,6 +14,7 @@
           <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
+          <td><button mat-stroked-button color="primary">Modify</button></td>
           <td><button mat-raised-button color="primary">Completed</button></td>
         </tr>
     </table>
