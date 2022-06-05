@@ -5,6 +5,19 @@
     margin-bottom: 1rem;
 }
 
+.tabs {
+    margin-top: 3rem;
+    background-color: #eee;
+}
+
+.active-link {
+    color: #283593;
+}
+
+a {
+    font-size: medium;
+}
+
 nav {
     display: flex;
     justify-content: center;
