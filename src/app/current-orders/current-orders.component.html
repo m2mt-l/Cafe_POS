@@ -9,7 +9,7 @@
           <th mat-sort-header="complete">Complete</th>
         </tr>
       
-        <tr class="orderList" *ngFor="let order of orderService.getAllCurrent(); let i = index" [attr.data-index]="i">
+        <tr class="orderList" *ngFor="let order of getAllCurrent(); let i = index" [attr.data-index]="i">
           <td>{{order.year}}/{{order.month}}/{{order.date}}</td>
           <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
           <td>{{order.customerName}}</td>

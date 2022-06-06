@@ -4,6 +4,8 @@ import { MenuItem } from '../model/menuItem';
 import { Order } from '../model/order';
 import { OrderService } from '../order.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 @Component({
     selector: 'app-add-or-update-order',
     templateUrl: './add-or-update-order.component.html',
@@ -14,11 +16,22 @@ export class AddOrUpdateOrderComponent implements OnInit {
     total: number[] = [];
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
-
-    constructor(private menuItemsService: MenuItemService, private orderService: OrderService) {}
-
+    order$!: Observable<Order>; 
     menuItems: MenuItem[] = this.menuItemsService.getAll();
-    ngOnInit(): void {}
+
+    constructor(
+        private menuItemsService: MenuItemService,
+        private orderService: OrderService,
+        private route: ActivatedRoute,
+        private router: Router
+        ) {}
+
+    ngOnInit(): void {
+        this.order$ = this.route.paramMap.pipe(
+            switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!)))
+        );
+        this.order$.subscribe(order => console.log(order));
+    }
 
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
         this.sumOrderTotal(index, Number(inputNumber), menuItem);
@@ -70,6 +83,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     setOrder(index: number): void {
-        this.newOrder = this.orderService.get(index);
+        this.orderService.get(index).subscribe((order: Order) => this.newOrder = order);
     }
 }
