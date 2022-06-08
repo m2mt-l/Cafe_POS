@@ -5,7 +5,7 @@ import { Order } from '../model/order';
 import { OrderService } from '../order.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, of } from 'rxjs';
 @Component({
     selector: 'app-add-or-update-order',
     templateUrl: './add-or-update-order.component.html',
@@ -18,6 +18,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
     order$!: Observable<Order>; 
     menuItems: MenuItem[] = this.menuItemsService.getAll();
+    index: number = Number(this.route.snapshot.paramMap.get('id')!);
 
     constructor(
         private menuItemsService: MenuItemService,
@@ -28,9 +29,12 @@ export class AddOrUpdateOrderComponent implements OnInit {
 
     ngOnInit(): void {
         this.order$ = this.route.paramMap.pipe(
-            switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!)))
+            switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!) - 1))
         );
-        this.order$.subscribe(order => console.log(order));
+        let subscribeOrder: any;
+        this.order$.subscribe(order => subscribeOrder = order);
+        if(subscribeOrder === undefined) this.order$ = of(this.newOrder);
+        console.log(this.index);
     }
 
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
@@ -58,17 +62,23 @@ export class AddOrUpdateOrderComponent implements OnInit {
 
     clickUpdateOrder(): void {
         this.newOrder.addTotal(this.getTotal());
-        this.orderService.submitOrder(this.newOrder);
+        if(this.index === 0) this.orderService.submitOrder(this.newOrder);
+        else this.orderService.orders[this.index - 1] = this.newOrder;    
     }
 
     isAbleToSubmitOrder(): boolean {
+        let subscribeOrder: any;
+        this.order$.subscribe(order => subscribeOrder = order);
+
         return (
-            this.newOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
+            // FIX
+            subscribeOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
         );
     }
 
     isValidNumberOfOrder(): boolean {
         for (let menuItem of this.newOrder.menuItems) {
+            if (menuItem === undefined) return false;
             if (menuItem < 0) return false;
         }
         return true;
