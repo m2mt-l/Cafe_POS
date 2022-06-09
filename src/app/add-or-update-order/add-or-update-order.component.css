@@ -50,3 +50,17 @@
 .orderTotal {
     margin-right: 2rem;
 }
+
+
+@media screen and (max-width: 480px) {
+    .picture {
+        width: 150px;
+        height: auto;
+        margin-right: 1rem;
+    }
+
+    .customerName {
+        font-size: 18px;
+        margin-right: 1rem;
+    }
+}

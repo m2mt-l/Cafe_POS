@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Order } from './model/order';
 import { MenuItem } from './model/menuItem';
 import { MenuItemService } from './menu-item.service';
+import { Observable, of } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
@@ -10,14 +11,14 @@ export class OrderService {
 
     constructor() {}
 
-    get(index: number): Order {
-        return this.orders[index];
+    get(index: number): Observable<Order> {
+        return of(this.orders[index]);
     }
 
     // getAll()
 
-    getAllCurrent(): Order[] {
-        return this.orders;
+    getAllCurrent(): Observable<Order[]> {
+        return of(this.orders);
     }
 
     getAllCompleted(): Order[] {

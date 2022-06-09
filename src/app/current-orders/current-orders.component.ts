@@ -16,4 +16,10 @@ export class CurrentOrdersComponent implements OnInit {
         order.updateTime();
         order.setCompleted();
     }
+
+    getAllCurrent(): Order[] {
+        let output: Order[] = [];
+        this.orderService.getAllCurrent().subscribe(orders => output = orders);
+        return output;
+    }
 }

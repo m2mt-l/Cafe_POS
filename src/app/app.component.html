@@ -1,8 +1,28 @@
 <h1 class="title">{{title}}</h1>
-<nav>
+<!-- <nav>
     <button mat-stroked-button color="primary" routerLink="/completed-orders">Completed Orders</button>
     <button mat-stroked-button color="primary" routerLink="/current-orders">Current Orders</button>
     <button mat-stroked-button color="primary" routerLink="/add-or-update-order">Add an Order</button>
+</nav> -->
+
+<nav mat-tab-nav-bar mat-align-tabs="center" ngClass="tabs">
+    <a mat-tab-link routerLink="/completed-orders" routerLinkActive="active-link">Completed Orders</a>
+    <a mat-tab-link routerLink="/current-orders" routerLinkActive="active-link">Current Orders</a>
+    <a mat-tab-link routerLink="/add-or-update-order" routerLinkActive="active-link">Add an Order</a>
 </nav>
+
 <router-outlet></router-outlet>
 <app-nav-dashboard></app-nav-dashboard>
+
+<mat-accordion>
+    <mat-expansion-panel class="expansion-panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                System logs
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+</mat-accordion>

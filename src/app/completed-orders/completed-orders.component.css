@@ -13,3 +13,16 @@
 .orderList {
     font-size: medium;
 }
+
+
+@media screen and (max-width: 480px) {
+    .orderListHeader {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        font-size: 10px;
+    }
+
+    .orderList {
+        font-size: 8px;
+    }
+}

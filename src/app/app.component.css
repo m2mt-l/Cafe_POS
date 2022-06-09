@@ -5,6 +5,18 @@
     margin-bottom: 1rem;
 }
 
+.tabs {
+    margin-top: 2rem;
+}
+
+.active-link {
+    color: #283593;
+}
+
+a {
+    font-size: medium;
+}
+
 nav {
     display: flex;
     justify-content: center;
@@ -14,4 +26,17 @@ button {
     margin-top: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+.expansion-panel {
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
 }
