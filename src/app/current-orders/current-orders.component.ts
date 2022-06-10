@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 import { Order } from '../model/order';
+import { LogMessageService } from '../log-message.service';
 
 @Component({
     selector: 'app-current-orders',
@@ -8,7 +9,7 @@ import { Order } from '../model/order';
     styleUrls: ['./current-orders.component.css'],
 })
 export class CurrentOrdersComponent implements OnInit {
-    constructor(public orderService: OrderService) {}
+    constructor(public orderService: OrderService, private logMessageService: LogMessageService) {}
 
     ngOnInit(): void {}
 
