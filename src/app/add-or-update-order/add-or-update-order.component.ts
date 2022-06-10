@@ -18,7 +18,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
     order$!: Observable<Order>;
-    menuItems: MenuItem[] = this.menuItemsService.getAll();
+    menuItems: MenuItem[] = this.getSubscribeMenuItems();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
 
     constructor(
@@ -55,6 +55,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     getTotal(): number {
+        const menuItems: number[] = this.getSubscribeOrder().menuItems;
         if (this.total.length === 0) return 0;
         else return this.total.reduce((total, x) => total + x);
     }
@@ -97,6 +98,12 @@ export class AddOrUpdateOrderComponent implements OnInit {
         let subscribeOrder: any;
         this.order$.subscribe((order) => (subscribeOrder = order));
         return subscribeOrder;
+    }
+
+    getSubscribeMenuItems(): MenuItem[] {
+        let menuItems: any;
+        this.menuItemsService.getAll().subscribe(items => menuItems = items);
+        return menuItems;
     }
 
     isValidNumberOfOrder(): boolean {

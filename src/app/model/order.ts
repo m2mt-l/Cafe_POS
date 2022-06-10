@@ -21,7 +21,9 @@ export class Order {
 
     setDefaultMenuItems(): number[] {
         let result: number[] = [];
-        const menuItemsLength: number = this.menuItemService.getAll().length;
+        let menuItems: any;
+        this.menuItemService.getAll().subscribe(items => menuItems = items)
+        const menuItemsLength: number = menuItems.length;
         for (let i: number = 0; i < menuItemsLength; i++) {
             result.push(0);
         }
