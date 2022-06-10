@@ -3,7 +3,7 @@ import { MenuItem } from './menuItem';
 
 export class Order {
     customerName: string = '';
-    menuItems: number [] = this.setDefaultMenuItems();
+    menuItems: number[] = this.setDefaultMenuItems();
     totalOrder: number = 0;
 
     year: number = 0;

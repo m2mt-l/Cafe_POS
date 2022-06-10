@@ -21,12 +21,11 @@ export class CurrentOrdersComponent implements OnInit {
 
     getAllCurrent(): Order[] {
         let output: Order[] = [];
-        this.orderService.getAllCurrent().subscribe(orders => output = orders);
+        this.orderService.getAllCurrent().subscribe((orders) => (output = orders));
         return output;
     }
 
     createCompleteOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
     }
-
 }

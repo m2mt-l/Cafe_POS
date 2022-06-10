@@ -118,7 +118,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         }
     }
 
-/*     setOrder(index: number): void {
+    /*     setOrder(index: number): void {
         this.orderService.get(index).subscribe((order: Order) => (this.newOrder = order));
     } */
 }
