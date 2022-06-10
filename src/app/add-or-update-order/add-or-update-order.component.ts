@@ -3,6 +3,7 @@ import { MenuItemService } from '../menu-item.service';
 import { MenuItem } from '../model/menuItem';
 import { Order } from '../model/order';
 import { OrderService } from '../order.service';
+import { LogMessageService } from '../log-message.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap, of } from 'rxjs';
@@ -16,25 +17,26 @@ export class AddOrUpdateOrderComponent implements OnInit {
     total: number[] = [];
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
-    order$!: Observable<Order>; 
+    order$!: Observable<Order>;
     menuItems: MenuItem[] = this.menuItemsService.getAll();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
 
     constructor(
         private menuItemsService: MenuItemService,
         private orderService: OrderService,
+        private logMessageService: LogMessageService,
         private route: ActivatedRoute,
         private router: Router
-        ) {}
+    ) {}
 
     ngOnInit(): void {
         this.order$ = this.route.paramMap.pipe(
             switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!) - 1))
         );
-        let subscribeOrder: any;
-        this.order$.subscribe(order => subscribeOrder = order);
-        if(subscribeOrder === undefined) this.order$ = of(this.newOrder);
+        const order: Order = this.getSubscribeOrder();
+        if (order === undefined) this.order$ = of(this.newOrder);
         console.log(this.index);
+        console.log(order);
     }
 
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
@@ -48,7 +50,8 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     setOrderMenuItem(index: number, inputNumber: number): void {
-        this.newOrder.menuItems[index] = inputNumber;
+        const order: Order = this.getSubscribeOrder();
+        order.menuItems[index] = inputNumber;
     }
 
     getTotal(): number {
@@ -57,33 +60,56 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     onKeyInputName(value: string): void {
-        this.newOrder.customerName = value;
+        const order: Order = this.getSubscribeOrder();
+        order.customerName = value;
     }
 
     clickUpdateOrder(): void {
-        this.newOrder.addTotal(this.getTotal());
-        if(this.index === 0) this.orderService.submitOrder(this.newOrder);
-        else this.orderService.orders[this.index - 1] = this.newOrder;    
+        const order: Order = this.getSubscribeOrder();
+        order.addTotal(this.getTotal());
+        if (this.index === 0) {
+            this.logMessageService.addMessage(this.createNewOrderMessage(order));
+            this.orderService.submitOrder(order);
+        } else {
+            this.logMessageService.addMessage(this.createModifyOrderMessage(order));
+            this.orderService.orders[this.index - 1] = order;
+        }
+    }
+
+    createNewOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+    }
+
+    createModifyOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
     }
 
     isAbleToSubmitOrder(): boolean {
-        let subscribeOrder: any;
-        this.order$.subscribe(order => subscribeOrder = order);
+        const order: Order = this.getSubscribeOrder();
 
         return (
             // FIX
-            subscribeOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
+            order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
         );
     }
 
+    getSubscribeOrder(): Order {
+        let subscribeOrder: any;
+        this.order$.subscribe((order) => (subscribeOrder = order));
+        return subscribeOrder;
+    }
+
     isValidNumberOfOrder(): boolean {
-        for (let menuItem of this.newOrder.menuItems) {
+        const order: Order = this.getSubscribeOrder();
+
+        for (let menuItem of order.menuItems) {
             if (menuItem === undefined) return false;
             if (menuItem < 0) return false;
         }
         return true;
     }
 
+    // FIX delete
     getOrderNumberErrorMessage(): string {
         if (this.orderNumber.hasError('required')) {
             return 'The number of order is required.';
@@ -92,7 +118,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         }
     }
 
-    setOrder(index: number): void {
-        this.orderService.get(index).subscribe((order: Order) => this.newOrder = order);
-    }
+/*     setOrder(index: number): void {
+        this.orderService.get(index).subscribe((order: Order) => (this.newOrder = order));
+    } */
 }

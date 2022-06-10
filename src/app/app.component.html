@@ -23,6 +23,8 @@
             <mat-panel-description>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        <div *ngFor="let logMessage of getLogMessages()">
+            <p>{{logMessage}}</p>
+        </div>
     </mat-expansion-panel>
 </mat-accordion>
