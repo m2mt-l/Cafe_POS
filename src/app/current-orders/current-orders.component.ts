@@ -39,25 +39,23 @@ export class CurrentOrdersComponent implements OnInit {
         this.dialog.open(DialogCompleteDialog, {
             width: '300px',
             height: '150px',
-            data: {order: order},
-        })
-      }
+            data: { order: order },
+        });
     }
-
+}
 
 @Component({
     selector: 'complete-order-dialog',
     templateUrl: './complete-order-dialog.html',
     styleUrls: ['./complete-order-dialog.css'],
-    template: 'passed in {{ data.order }}'
-  })
-  export class DialogCompleteDialog {
-      
+    template: 'passed in {{ data.order }}',
+})
+export class DialogCompleteDialog {
     constructor(
         public dialogRef: MatDialogRef<DialogCompleteDialog>,
         private logMessageService: LogMessageService,
-        @Inject(MAT_DIALOG_DATA) public data: {order: Order},
-        ) {}
+        @Inject(MAT_DIALOG_DATA) public data: { order: Order }
+    ) {}
 
     setComplete(order: Order): void {
         order.updateTime();

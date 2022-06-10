@@ -26,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         AddOrUpdateOrderComponent,
         CurrentOrdersComponent,
         CompletedOrdersComponent,
-        DialogCompleteDialog
+        DialogCompleteDialog,
     ],
     imports: [
         BrowserModule,
