@@ -14,9 +14,9 @@ export class CurrentOrdersComponent implements OnInit {
     ngOnInit(): void {}
 
     setComplete(order: Order): void {
-        this.logMessageService.addMessage(this.createCompleteOrderMessage(order));
         order.updateTime();
         order.setCompleted();
+        this.logMessageService.addMessage(this.createCompleteOrderMessage(order));
     }
 
     getAllCurrent(): Order[] {
