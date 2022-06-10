@@ -9,6 +9,7 @@ import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-order.component';
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
 import { CompletedOrdersComponent } from './completed-orders/completed-orders.component';
+import { DialogCompleteDialog } from './current-orders/current-orders.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         AddOrUpdateOrderComponent,
         CurrentOrdersComponent,
         CompletedOrdersComponent,
+        DialogCompleteDialog
     ],
     imports: [
         BrowserModule,
@@ -38,7 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatSortModule,
         MatTabsModule,
         MatExpansionModule,
-        MatDialogModule
+        MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

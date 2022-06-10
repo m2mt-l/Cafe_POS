@@ -15,7 +15,8 @@
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
           <td><button mat-stroked-button color="primary" routerLink="/add-or-update-order/{{i + 1}}">Modify</button></td>
-          <td><button mat-raised-button color="primary" (click)="setComplete(order)">Completed</button></td>
+<!--           <td><button mat-raised-button color="primary" (click)="setComplete(order)">Completed</button></td> -->
+          <td><button mat-raised-button color="primary" (click)="openDialog(order)">Completed</button></td>
         </tr>
     </table>
 </div>
