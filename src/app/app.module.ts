@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatSortModule,
         MatTabsModule,
         MatExpansionModule,
+        MatDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent],
