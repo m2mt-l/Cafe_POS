@@ -11,8 +11,7 @@ export class AppComponent {
 
     constructor(private logMessageService: LogMessageService) {}
 
-    getLogMessage(): string {
-        //FIX
-        return this.logMessageService.testMessage;
+    getLogMessages(): string[] {
+        return this.logMessageService.messages;
     }
 }

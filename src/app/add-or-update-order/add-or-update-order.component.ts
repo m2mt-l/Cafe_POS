@@ -3,6 +3,7 @@ import { MenuItemService } from '../menu-item.service';
 import { MenuItem } from '../model/menuItem';
 import { Order } from '../model/order';
 import { OrderService } from '../order.service';
+import { LogMessageService } from '../log-message.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap, of } from 'rxjs';
@@ -23,6 +24,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     constructor(
         private menuItemsService: MenuItemService,
         private orderService: OrderService,
+        private logMessageService: LogMessageService,
         private route: ActivatedRoute,
         private router: Router
         ) {}
@@ -35,6 +37,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         this.order$.subscribe(order => subscribeOrder = order);
         if(subscribeOrder === undefined) this.order$ = of(this.newOrder);
         console.log(this.index);
+        console.log(subscribeOrder);
     }
 
     onKeyInputOrder(index: number, inputNumber: string, menuItem: MenuItem): void {
@@ -61,10 +64,40 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     clickUpdateOrder(): void {
-        this.newOrder.addTotal(this.getTotal());
-        if(this.index === 0) this.orderService.submitOrder(this.newOrder);
-        else this.orderService.orders[this.index - 1] = this.newOrder;    
+        let subscribeOrder: any;
+        this.order$.subscribe(order => subscribeOrder = order);
+        subscribeOrder.addTotal(this.getTotal());
+        if(this.index === 0) {
+            this.logMessageService.addMessage(this.createNewOrderMessage(subscribeOrder));
+            this.orderService.submitOrder(subscribeOrder);
+        }
+        else {
+            this.logMessageService.addMessage(this.createModifyOrderMessage(subscribeOrder));
+            this.orderService.orders[this.index - 1] = subscribeOrder;
+        }
+/*         this.newOrder.addTotal(this.getTotal());
+        if(this.index === 0) {
+            this.logMessageService.addMessage(this.createNewOrderMessage(this.newOrder));
+            this.orderService.submitOrder(this.newOrder);
+        }
+        else {
+            this.logMessageService.addMessage(this.createModifyOrderMessage(this.newOrder));
+            this.orderService.orders[this.index - 1] = this.newOrder;
+        } */
     }
+
+    createNewOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+    }
+
+    createModifyOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+    }
+
+    createCompleteOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+    }
+
 
     isAbleToSubmitOrder(): boolean {
         let subscribeOrder: any;
@@ -84,6 +117,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         return true;
     }
 
+    // FIX delete
     getOrderNumberErrorMessage(): string {
         if (this.orderNumber.hasError('required')) {
             return 'The number of order is required.';
