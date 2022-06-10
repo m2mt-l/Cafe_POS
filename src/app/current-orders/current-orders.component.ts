@@ -37,6 +37,8 @@ export class CurrentOrdersComponent implements OnInit {
 
     openDialog(order: Order): void {
         this.dialog.open(DialogCompleteDialog, {
+            width: '300px',
+            height: '150px',
             data: {order: order},
         })
       }
@@ -46,6 +48,7 @@ export class CurrentOrdersComponent implements OnInit {
 @Component({
     selector: 'complete-order-dialog',
     templateUrl: './complete-order-dialog.html',
+    styleUrls: ['./complete-order-dialog.css'],
     template: 'passed in {{ data.order }}'
   })
   export class DialogCompleteDialog {
