@@ -17,7 +17,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     total: number[] = [];
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
-    order$!: Observable<Order>; 
+    order$!: Observable<Order>;
     menuItems: MenuItem[] = this.menuItemsService.getAll();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
 
@@ -27,15 +27,15 @@ export class AddOrUpdateOrderComponent implements OnInit {
         private logMessageService: LogMessageService,
         private route: ActivatedRoute,
         private router: Router
-        ) {}
+    ) {}
 
     ngOnInit(): void {
         this.order$ = this.route.paramMap.pipe(
             switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!) - 1))
         );
         let subscribeOrder: any;
-        this.order$.subscribe(order => subscribeOrder = order);
-        if(subscribeOrder === undefined) this.order$ = of(this.newOrder);
+        this.order$.subscribe((order) => (subscribeOrder = order));
+        if (subscribeOrder === undefined) this.order$ = of(this.newOrder);
         console.log(this.index);
         console.log(subscribeOrder);
     }
@@ -65,17 +65,16 @@ export class AddOrUpdateOrderComponent implements OnInit {
 
     clickUpdateOrder(): void {
         let subscribeOrder: any;
-        this.order$.subscribe(order => subscribeOrder = order);
+        this.order$.subscribe((order) => (subscribeOrder = order));
         subscribeOrder.addTotal(this.getTotal());
-        if(this.index === 0) {
+        if (this.index === 0) {
             this.logMessageService.addMessage(this.createNewOrderMessage(subscribeOrder));
             this.orderService.submitOrder(subscribeOrder);
-        }
-        else {
+        } else {
             this.logMessageService.addMessage(this.createModifyOrderMessage(subscribeOrder));
             this.orderService.orders[this.index - 1] = subscribeOrder;
         }
-/*         this.newOrder.addTotal(this.getTotal());
+        /*         this.newOrder.addTotal(this.getTotal());
         if(this.index === 0) {
             this.logMessageService.addMessage(this.createNewOrderMessage(this.newOrder));
             this.orderService.submitOrder(this.newOrder);
@@ -87,21 +86,26 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     createNewOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
     }
 
     createModifyOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
     }
 
     isAbleToSubmitOrder(): boolean {
-        let subscribeOrder: any;
-        this.order$.subscribe(order => subscribeOrder = order);
+        const order: Order = this.getSubscribeOrder();
 
         return (
             // FIX
-            subscribeOrder.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
+            order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
         );
+    }
+
+    getSubscribeOrder(): Order {
+        let subscribeOrder: any;
+        this.order$.subscribe((order) => (subscribeOrder = order));
+        return subscribeOrder;
     }
 
     isValidNumberOfOrder(): boolean {
@@ -122,6 +126,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     setOrder(index: number): void {
-        this.orderService.get(index).subscribe((order: Order) => this.newOrder = order);
+        this.orderService.get(index).subscribe((order: Order) => (this.newOrder = order));
     }
 }
