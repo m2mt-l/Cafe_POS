@@ -18,7 +18,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     newOrder: Order = this.orderService.created(this.customerName, this.menuItemsService);
     orderNumber: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
     order$!: Observable<Order>;
-    menuItems: MenuItem[] = this.menuItemsService.getAll();
+    menuItems: MenuItem[] = this.getSubscribeMenuItems();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
 
     constructor(
@@ -35,6 +35,10 @@ export class AddOrUpdateOrderComponent implements OnInit {
         );
         const order: Order = this.getSubscribeOrder();
         if (order === undefined) this.order$ = of(this.newOrder);
+        else
+            this.total = this.getSubscribeOrder().menuItems.map(
+                (menuItem, index) => menuItem * this.menuItems[index].price
+            );
         console.log(this.index);
         console.log(order);
     }
@@ -46,7 +50,8 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     sumOrderTotal(index: number, inputNumber: number, menuItem: MenuItem): void {
-        this.total[index] = inputNumber * menuItem.price;
+        const order: Order = this.getSubscribeOrder();
+        this.total[index] = order.menuItems[index] * menuItem.price;
     }
 
     setOrderMenuItem(index: number, inputNumber: number): void {
@@ -55,6 +60,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     getTotal(): number {
+        const menuItems: number[] = this.getSubscribeOrder().menuItems;
         if (this.total.length === 0) return 0;
         else return this.total.reduce((total, x) => total + x);
     }
@@ -87,16 +93,19 @@ export class AddOrUpdateOrderComponent implements OnInit {
     isAbleToSubmitOrder(): boolean {
         const order: Order = this.getSubscribeOrder();
 
-        return (
-            // FIX
-            order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
-        );
+        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder();
     }
 
     getSubscribeOrder(): Order {
         let subscribeOrder: any;
         this.order$.subscribe((order) => (subscribeOrder = order));
         return subscribeOrder;
+    }
+
+    getSubscribeMenuItems(): MenuItem[] {
+        let menuItems: any;
+        this.menuItemsService.getAll().subscribe((items) => (menuItems = items));
+        return menuItems;
     }
 
     isValidNumberOfOrder(): boolean {
@@ -108,17 +117,4 @@ export class AddOrUpdateOrderComponent implements OnInit {
         }
         return true;
     }
-
-    // FIX delete
-    getOrderNumberErrorMessage(): string {
-        if (this.orderNumber.hasError('required')) {
-            return 'The number of order is required.';
-        } else {
-            return this.orderNumber.hasError('min') ? 'The minimum number is 1.' : '';
-        }
-    }
-
-/*     setOrder(index: number): void {
-        this.orderService.get(index).subscribe((order: Order) => (this.newOrder = order));
-    } */
 }
