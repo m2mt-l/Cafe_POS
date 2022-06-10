@@ -22,7 +22,7 @@ export class Order {
     setDefaultMenuItems(): number[] {
         let result: number[] = [];
         let menuItems: any;
-        this.menuItemService.getAll().subscribe(items => menuItems = items)
+        this.menuItemService.getAll().subscribe((items) => (menuItems = items));
         const menuItemsLength: number = menuItems.length;
         for (let i: number = 0; i < menuItemsLength; i++) {
             result.push(0);

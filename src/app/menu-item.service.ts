@@ -10,7 +10,7 @@ export class MenuItemService {
 
     get(index: number): MenuItem | null {
         let menuItems: any;
-        this.getAll().subscribe(items => menuItems = items);
+        this.getAll().subscribe((items) => (menuItems = items));
         if (index <= menuItems.length - 1) return menuItems[index];
         else return null;
     }

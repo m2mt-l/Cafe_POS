@@ -35,7 +35,10 @@ export class AddOrUpdateOrderComponent implements OnInit {
         );
         const order: Order = this.getSubscribeOrder();
         if (order === undefined) this.order$ = of(this.newOrder);
-        else this.total = this.getSubscribeOrder().menuItems.map((menuItem, index) => menuItem * this.menuItems[index].price);
+        else
+            this.total = this.getSubscribeOrder().menuItems.map(
+                (menuItem, index) => menuItem * this.menuItems[index].price
+            );
         console.log(this.index);
         console.log(order);
     }
@@ -90,10 +93,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     isAbleToSubmitOrder(): boolean {
         const order: Order = this.getSubscribeOrder();
 
-        return (
-            // FIX
-            order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder()
-        );
+        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder();
     }
 
     getSubscribeOrder(): Order {
@@ -104,7 +104,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
 
     getSubscribeMenuItems(): MenuItem[] {
         let menuItems: any;
-        this.menuItemsService.getAll().subscribe(items => menuItems = items);
+        this.menuItemsService.getAll().subscribe((items) => (menuItems = items));
         return menuItems;
     }
 
@@ -117,17 +117,4 @@ export class AddOrUpdateOrderComponent implements OnInit {
         }
         return true;
     }
-
-    // FIX delete
-    getOrderNumberErrorMessage(): string {
-        if (this.orderNumber.hasError('required')) {
-            return 'The number of order is required.';
-        } else {
-            return this.orderNumber.hasError('min') ? 'The minimum number is 1.' : '';
-        }
-    }
-
-    /*     setOrder(index: number): void {
-        this.orderService.get(index).subscribe((order: Order) => (this.newOrder = order));
-    } */
 }
