@@ -35,6 +35,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         );
         const order: Order = this.getSubscribeOrder();
         if (order === undefined) this.order$ = of(this.newOrder);
+        else this.total = this.getSubscribeOrder().menuItems.map((menuItem, index) => menuItem * this.menuItems[index].price);
         console.log(this.index);
         console.log(order);
     }
@@ -46,7 +47,8 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     sumOrderTotal(index: number, inputNumber: number, menuItem: MenuItem): void {
-        this.total[index] = inputNumber * menuItem.price;
+        const order: Order = this.getSubscribeOrder();
+        this.total[index] = order.menuItems[index] * menuItem.price;
     }
 
     setOrderMenuItem(index: number, inputNumber: number): void {
