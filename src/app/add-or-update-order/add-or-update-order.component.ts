@@ -94,11 +94,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
         return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
     }
 
-    createCompleteOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
-    }
-
-
     isAbleToSubmitOrder(): boolean {
         let subscribeOrder: any;
         this.order$.subscribe(order => subscribeOrder = order);

@@ -14,6 +14,7 @@ export class CurrentOrdersComponent implements OnInit {
     ngOnInit(): void {}
 
     setComplete(order: Order): void {
+        this.logMessageService.addMessage(this.createCompleteOrderMessage(order));
         order.updateTime();
         order.setCompleted();
     }
@@ -23,4 +24,9 @@ export class CurrentOrdersComponent implements OnInit {
         this.orderService.getAllCurrent().subscribe(orders => output = orders);
         return output;
     }
+
+    createCompleteOrderMessage(order: Order): string {
+        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`
+    }
+
 }
