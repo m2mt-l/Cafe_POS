@@ -8,8 +8,8 @@
         </tr>
       
         <tr class="orderList" *ngFor="let order of orderService.getAllCompleted()">
-          <td>{{order.year}}/{{order.month}}/{{order.date}}</td>
-          <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
+          <td>{{order.createDateString()}}</td>
+          <td>{{order.createTimeString()}}</td>
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
         </tr>

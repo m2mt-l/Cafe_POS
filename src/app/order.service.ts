@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Order } from './model/order';
-import { MenuItem } from './model/menuItem';
 import { MenuItemService } from './menu-item.service';
 import { Observable, of } from 'rxjs';
 @Injectable({
@@ -14,8 +13,6 @@ export class OrderService {
     get(index: number): Observable<Order> {
         return of(this.orders[index]);
     }
-
-    // getAll()
 
     getAllCurrent(): Observable<Order[]> {
         return of(this.orders);
@@ -32,7 +29,6 @@ export class OrderService {
     }
 
     submitOrder(newOrder: Order): void {
-        newOrder.updateTime();
         this.orders.push(newOrder);
     }
 }

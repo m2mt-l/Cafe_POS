@@ -10,12 +10,29 @@
         </tr>
       
         <tr class="orderList" *ngFor="let order of getAllCurrent(); let i = index" [attr.data-index]="i">
-          <td>{{order.year}}/{{order.month}}/{{order.date}}</td>
-          <td>{{order.hours}}:{{order.minutes}}:{{order.seconds}}</td>
+          <td>{{order.createDateString()}}</td>
+          <td>{{order.createTimeString()}}</td>
           <td>{{order.customerName}}</td>
           <td>${{order.totalOrder}}</td>
-          <td><button mat-stroked-button color="primary" routerLink="/add-or-update-order/{{i + 1}}">Modify</button></td>
-          <td><button mat-raised-button color="primary" (click)="setComplete(order)">Completed</button></td>
+          <div *ngIf="isOrderCompeted(order) then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <td><button mat-stroked-button color="primary" disabled>Modify</button></td>
+            <td><button mat-raised-button color="primary" disabled>Completed</button></td>
+          </ng-template>
+          <ng-template #elseBlock>
+            <td><button mat-stroked-button color="primary" routerLink="/add-or-update-order/{{i + 1}}">Modify</button></td>
+            <td><button mat-raised-button color="primary" (click)="openDialog(order)">Completed</button></td>
+          </ng-template>
         </tr>
     </table>
 </div>
+
+
+<!-- 
+<div *ngIf="isAbleToSubmitOrder(); then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <button mat-raised-button color="primary" (click)="clickUpdateOrder()">Submit/Update Order</button>
+</ng-template>
+<ng-template #elseBlock>
+    <button mat-raised-button color="primary" disabled>Submit/Update Order</button>
+</ng-template> -->

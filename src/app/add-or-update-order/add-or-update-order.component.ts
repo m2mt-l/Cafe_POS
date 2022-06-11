@@ -20,16 +20,17 @@ export class AddOrUpdateOrderComponent implements OnInit {
     order$!: Observable<Order>;
     menuItems: MenuItem[] = this.getSubscribeMenuItems();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
+    isSubmitted: boolean = false;
 
     constructor(
         private menuItemsService: MenuItemService,
         private orderService: OrderService,
         private logMessageService: LogMessageService,
         private route: ActivatedRoute,
-        private router: Router
     ) {}
 
     ngOnInit(): void {
+        this.isSubmitted = true;
         this.order$ = this.route.paramMap.pipe(
             switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!) - 1))
         );
@@ -60,7 +61,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     getTotal(): number {
-        const menuItems: number[] = this.getSubscribeOrder().menuItems;
         if (this.total.length === 0) return 0;
         else return this.total.reduce((total, x) => total + x);
     }
@@ -74,26 +74,30 @@ export class AddOrUpdateOrderComponent implements OnInit {
         const order: Order = this.getSubscribeOrder();
         order.addTotal(this.getTotal());
         if (this.index === 0) {
+            order.updateTime();
             this.logMessageService.addMessage(this.createNewOrderMessage(order));
             this.orderService.submitOrder(order);
+            this.isSubmitted = false;
         } else {
+            order.updateTime();
             this.logMessageService.addMessage(this.createModifyOrderMessage(order));
             this.orderService.orders[this.index - 1] = order;
+            this.isSubmitted = false;
         }
     }
 
     createNewOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+        return `${order.customerName}'s order has been created. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     createModifyOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+        return `${order.customerName}'s order has been modified. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     isAbleToSubmitOrder(): boolean {
         const order: Order = this.getSubscribeOrder();
 
-        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder();
+        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder() && this.isSubmitted;
     }
 
     getSubscribeOrder(): Order {
