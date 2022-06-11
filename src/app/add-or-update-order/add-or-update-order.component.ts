@@ -20,6 +20,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     order$!: Observable<Order>;
     menuItems: MenuItem[] = this.getSubscribeMenuItems();
     index: number = Number(this.route.snapshot.paramMap.get('id')!);
+    isSubmitted: boolean = false;
 
     constructor(
         private menuItemsService: MenuItemService,
@@ -29,6 +30,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.isSubmitted = true;
         this.order$ = this.route.paramMap.pipe(
             switchMap((params: ParamMap) => this.orderService.get(Number(params.get('id')!) - 1))
         );
@@ -72,11 +74,14 @@ export class AddOrUpdateOrderComponent implements OnInit {
         const order: Order = this.getSubscribeOrder();
         order.addTotal(this.getTotal());
         if (this.index === 0) {
+            order.updateTime();
             this.logMessageService.addMessage(this.createNewOrderMessage(order));
             this.orderService.submitOrder(order);
+            this.isSubmitted = false;
         } else {
             this.logMessageService.addMessage(this.createModifyOrderMessage(order));
             this.orderService.orders[this.index - 1] = order;
+            this.isSubmitted = false;
         }
     }
 
@@ -91,7 +96,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
     isAbleToSubmitOrder(): boolean {
         const order: Order = this.getSubscribeOrder();
 
-        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder();
+        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder() && this.isSubmitted;
     }
 
     getSubscribeOrder(): Order {

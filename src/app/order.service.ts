@@ -29,7 +29,6 @@ export class OrderService {
     }
 
     submitOrder(newOrder: Order): void {
-        newOrder.updateTime();
         this.orders.push(newOrder);
     }
 }
