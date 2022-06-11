@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Order } from './model/order';
-import { MenuItem } from './model/menuItem';
 import { MenuItemService } from './menu-item.service';
 import { Observable, of } from 'rxjs';
 @Injectable({
