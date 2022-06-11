@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class LogMessageService {
     messages: string[] = [];
-    //FIX delete
-    testMessage: string = 'This is from log message service.';
 
     constructor() {}
 

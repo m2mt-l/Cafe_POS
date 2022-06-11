@@ -13,7 +13,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class CurrentOrdersComponent implements OnInit {
     constructor(
         public orderService: OrderService,
-        private logMessageService: LogMessageService,
         public dialog: MatDialog
     ) {}
 

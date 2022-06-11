@@ -15,8 +15,6 @@ export class OrderService {
         return of(this.orders[index]);
     }
 
-    // getAll()
-
     getAllCurrent(): Observable<Order[]> {
         return of(this.orders);
     }

@@ -26,7 +26,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
         private orderService: OrderService,
         private logMessageService: LogMessageService,
         private route: ActivatedRoute,
-        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -60,7 +59,6 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     getTotal(): number {
-        const menuItems: number[] = this.getSubscribeOrder().menuItems;
         if (this.total.length === 0) return 0;
         else return this.total.reduce((total, x) => total + x);
     }
