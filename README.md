@@ -1,6 +1,19 @@
-# CafePos
+# Cafe POS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
+This project is for Recursion Angular project and was generated with Angular CLI version 13.3.6.
+
+## URL
+https://m2mt-l.github.io/Cafe_POS/
+
+## Description
+This is a virtual Cafe POS. Input order in "Add an order" tab.
+<img width="1215" alt="Screen Shot 2022-06-11 at 11 20 58" src="https://user-images.githubusercontent.com/6548931/173169017-523770f4-7f11-43b6-9f31-768a0baa9fbf.png">
+
+In "Current Orders" tab, you can choose modify or competed order. Modifying order will go to "Add an order" tab with parameters.
+<img width="1215" alt="Screen Shot 2022-06-11 at 11 25 32" src="https://user-images.githubusercontent.com/6548931/173169121-8c1b2f15-9fdc-4230-a417-515b1f85af91.png">
+
+"Completed Orders" tab shows completed orders. You can not modify these orders after completing. System logs recorded these actions accordingly.
+<img width="1215" alt="Screen Shot 2022-06-11 at 11 31 15" src="https://user-images.githubusercontent.com/6548931/173169255-3a286a13-9019-4584-9681-ba662eae10ef.png">
 
 ## Development server
 
