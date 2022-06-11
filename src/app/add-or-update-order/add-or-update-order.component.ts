@@ -79,6 +79,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
             this.orderService.submitOrder(order);
             this.isSubmitted = false;
         } else {
+            order.updateTime();
             this.logMessageService.addMessage(this.createModifyOrderMessage(order));
             this.orderService.orders[this.index - 1] = order;
             this.isSubmitted = false;
