@@ -42,6 +42,10 @@ export class CurrentOrdersComponent implements OnInit {
             data: { order: order },
         });
     }
+
+    isOrderCompeted(order: Order): boolean {
+        return order.isCompleted;
+    }
 }
 
 @Component({
