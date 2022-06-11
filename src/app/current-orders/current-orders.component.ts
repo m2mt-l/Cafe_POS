@@ -68,6 +68,6 @@ export class DialogCompleteDialog {
     }
 
     createCompleteOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+        return `${order.customerName}'s order has been completed. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 }

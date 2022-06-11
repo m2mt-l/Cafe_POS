@@ -56,4 +56,12 @@ export class Order {
         this.minutes = date.getMinutes();
         this.seconds = date.getSeconds();
     }
+
+    createDateString(): string {
+        return `${this.year}/${this.month}/${this.date}`
+    }
+
+    createTimeString(): string {
+        return `${this.hours}:${this.minutes}:${this.seconds}`
+    }
 }

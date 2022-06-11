@@ -83,11 +83,11 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     createNewOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been created. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+        return `${order.customerName}'s order has been created. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     createModifyOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been modified. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
+        return `${order.customerName}'s order has been modified. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     isAbleToSubmitOrder(): boolean {
