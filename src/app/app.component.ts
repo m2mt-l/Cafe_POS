@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogMessageService } from './log-message.service';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    title = 'cafe_pos';
+    title = 'Desmond Coffee Shop';
+
+    constructor(private logMessageService: LogMessageService) {}
+
+    getLogMessages(): string[] {
+        return this.logMessageService.messages;
+    }
 }

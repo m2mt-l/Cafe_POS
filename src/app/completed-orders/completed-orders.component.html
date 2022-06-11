@@ -1,0 +1,17 @@
+<div class="completedOrderList">
+    <table matSort>
+        <tr class="orderListHeader">
+          <th mat-sort-header="date">Date</th>
+          <th mat-sort-header="time">Time</th>
+          <th mat-sort-header="customer">Customer</th>
+          <th mat-sort-header="total">Total</th>
+        </tr>
+      
+        <tr class="orderList" *ngFor="let order of orderService.getAllCompleted()">
+          <td>{{order.createDateString()}}</td>
+          <td>{{order.createTimeString()}}</td>
+          <td>{{order.customerName}}</td>
+          <td>${{order.totalOrder}}</td>
+        </tr>
+    </table>
+</div>
