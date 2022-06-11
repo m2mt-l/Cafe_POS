@@ -11,10 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./current-orders.component.css'],
 })
 export class CurrentOrdersComponent implements OnInit {
-    constructor(
-        public orderService: OrderService,
-        public dialog: MatDialog
-    ) {}
+    constructor(public orderService: OrderService, public dialog: MatDialog) {}
 
     ngOnInit(): void {}
 
@@ -57,6 +54,8 @@ export class CompleteDialog {
     }
 
     createCompleteOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been completed. Date: ${order.createDateString()} ${order.createTimeString()}`;
+        return `${
+            order.customerName
+        }'s order has been completed. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 }

@@ -26,7 +26,7 @@ export class AddOrUpdateOrderComponent implements OnInit {
         private menuItemsService: MenuItemService,
         private orderService: OrderService,
         private logMessageService: LogMessageService,
-        private route: ActivatedRoute,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -87,17 +87,26 @@ export class AddOrUpdateOrderComponent implements OnInit {
     }
 
     createNewOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been created. Date: ${order.createDateString()} ${order.createTimeString()}`;
+        return `${
+            order.customerName
+        }'s order has been created. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     createModifyOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been modified. Date: ${order.createDateString()} ${order.createTimeString()}`;
+        return `${
+            order.customerName
+        }'s order has been modified. Date: ${order.createDateString()} ${order.createTimeString()}`;
     }
 
     isAbleToSubmitOrder(): boolean {
         const order: Order = this.getSubscribeOrder();
 
-        return order.customerName != '' && this.getTotal() > 0 && this.isValidNumberOfOrder() && this.isSubmitted;
+        return (
+            order.customerName != '' &&
+            this.getTotal() > 0 &&
+            this.isValidNumberOfOrder() &&
+            this.isSubmitted
+        );
     }
 
     getSubscribeOrder(): Order {

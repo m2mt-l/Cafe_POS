@@ -58,10 +58,10 @@ export class Order {
     }
 
     createDateString(): string {
-        return `${this.year}/${this.month}/${this.date}`
+        return `${this.year}/${this.month}/${this.date}`;
     }
 
     createTimeString(): string {
-        return `${this.hours}:${this.minutes}:${this.seconds}`
+        return `${this.hours}:${this.minutes}:${this.seconds}`;
     }
 }
