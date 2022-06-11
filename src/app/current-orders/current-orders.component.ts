@@ -26,7 +26,7 @@ export class CurrentOrdersComponent implements OnInit {
     }
 
     openDialog(order: Order): void {
-        this.dialog.open(DialogCompleteDialog, {
+        this.dialog.open(CompleteDialog, {
             width: '300px',
             height: '150px',
             data: { order: order },
@@ -44,9 +44,9 @@ export class CurrentOrdersComponent implements OnInit {
     styleUrls: ['./complete-order-dialog.css'],
     template: 'passed in {{ data.order }}',
 })
-export class DialogCompleteDialog {
+export class CompleteDialog {
     constructor(
-        public dialogRef: MatDialogRef<DialogCompleteDialog>,
+        public dialogRef: MatDialogRef<CompleteDialog>,
         private logMessageService: LogMessageService,
         @Inject(MAT_DIALOG_DATA) public data: { order: Order }
     ) {}
