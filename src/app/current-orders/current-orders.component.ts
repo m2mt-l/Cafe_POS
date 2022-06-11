@@ -19,20 +19,10 @@ export class CurrentOrdersComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    setComplete(order: Order): void {
-        order.updateTime();
-        order.setCompleted();
-        this.logMessageService.addMessage(this.createCompleteOrderMessage(order));
-    }
-
     getAllCurrent(): Order[] {
         let output: Order[] = [];
         this.orderService.getAllCurrent().subscribe((orders) => (output = orders));
         return output;
-    }
-
-    createCompleteOrderMessage(order: Order): string {
-        return `${order.customerName}'s order has been completed. Date: ${order.year}/${order.month}/${order.date} ${order.hours}:${order.minutes}:${order.seconds}`;
     }
 
     openDialog(order: Order): void {
